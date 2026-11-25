@@ -59,7 +59,8 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _watermarkKitPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _watermarkKitPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -84,15 +85,14 @@ class _MyAppState extends State<MyApp> {
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Watermark Kit Example'),
-            bottom: TabBar(tabs: [
-              Tab(text: 'Image'),
-              Tab(text: 'Video'),
-            ]),
+            bottom: TabBar(
+              tabs: [
+                Tab(text: 'Image'),
+                Tab(text: 'Video'),
+              ],
+            ),
           ),
-          body: TabBarView(children: [
-            _ImageTab(),
-            _VideoTab(),
-          ]),
+          body: TabBarView(children: [_ImageTab(), _VideoTab()]),
         ),
       ),
     );
@@ -106,9 +106,21 @@ class _MyAppState extends State<MyApp> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: _imageCard('Base Image', _baseImage, () => _pickImage(isBase: true))),
+        Expanded(
+          child: _imageCard(
+            'Base Image',
+            _baseImage,
+            () => _pickImage(isBase: true),
+          ),
+        ),
         const SizedBox(width: 12),
-        Expanded(child: _imageCard('Watermark Image', _watermarkImage, () => _pickImage(isBase: false))),
+        Expanded(
+          child: _imageCard(
+            'Watermark Image',
+            _watermarkImage,
+            () => _pickImage(isBase: false),
+          ),
+        ),
       ],
     );
   }
@@ -136,7 +148,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: onPick,
               icon: const Icon(Icons.photo_library),
               label: const Text('Select from Library'),
-            )
+            ),
           ],
         ),
       ),
@@ -156,8 +168,14 @@ class _MyAppState extends State<MyApp> {
               items: const [
                 DropdownMenuItem(value: 'topLeft', child: Text('topLeft')),
                 DropdownMenuItem(value: 'topRight', child: Text('topRight')),
-                DropdownMenuItem(value: 'bottomLeft', child: Text('bottomLeft')),
-                DropdownMenuItem(value: 'bottomRight', child: Text('bottomRight')),
+                DropdownMenuItem(
+                  value: 'bottomLeft',
+                  child: Text('bottomLeft'),
+                ),
+                DropdownMenuItem(
+                  value: 'bottomRight',
+                  child: Text('bottomRight'),
+                ),
                 DropdownMenuItem(value: 'center', child: Text('center')),
               ],
               onChanged: (v) => setState(() => _anchor = v ?? _anchor),
@@ -175,14 +193,57 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
-        _slider('Margin', _margin, 0, 64, (v) => setState(() => _margin = v), suffix: 'px'),
-        _slider('Width % of base', _widthPercent, 0.05, 0.8, (v) => setState(() => _widthPercent = v),
-            formatter: (v) => '${(v * 100).toStringAsFixed(0)}%'),
-        _slider('Opacity', _opacity, 0.0, 1.0, (v) => setState(() => _opacity = v), formatter: (v) => v.toStringAsFixed(2)),
-        _slider('Offset X', _offsetX, -200, 200, (v) => setState(() => _offsetX = v), formatter: (v) => v.toStringAsFixed(0), suffix: 'px'),
-        _slider('Offset Y', _offsetY, -200, 200, (v) => setState(() => _offsetY = v), formatter: (v) => v.toStringAsFixed(0), suffix: 'px'),
+        _slider(
+          'Margin',
+          _margin,
+          0,
+          64,
+          (v) => setState(() => _margin = v),
+          suffix: 'px',
+        ),
+        _slider(
+          'Width % of base',
+          _widthPercent,
+          0.05,
+          0.8,
+          (v) => setState(() => _widthPercent = v),
+          formatter: (v) => '${(v * 100).toStringAsFixed(0)}%',
+        ),
+        _slider(
+          'Opacity',
+          _opacity,
+          0.0,
+          1.0,
+          (v) => setState(() => _opacity = v),
+          formatter: (v) => v.toStringAsFixed(2),
+        ),
+        _slider(
+          'Offset X',
+          _offsetX,
+          -200,
+          200,
+          (v) => setState(() => _offsetX = v),
+          formatter: (v) => v.toStringAsFixed(0),
+          suffix: 'px',
+        ),
+        _slider(
+          'Offset Y',
+          _offsetY,
+          -200,
+          200,
+          (v) => setState(() => _offsetY = v),
+          formatter: (v) => v.toStringAsFixed(0),
+          suffix: 'px',
+        ),
         if (_format == 'jpeg')
-          _slider('JPEG Quality', _quality, 0.2, 1.0, (v) => setState(() => _quality = v), formatter: (v) => v.toStringAsFixed(2)),
+          _slider(
+            'JPEG Quality',
+            _quality,
+            0.2,
+            1.0,
+            (v) => setState(() => _quality = v),
+            formatter: (v) => v.toStringAsFixed(2),
+          ),
       ],
     );
   }
@@ -191,7 +252,10 @@ class _MyAppState extends State<MyApp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Text Watermark', style: TextStyle(fontWeight: FontWeight.bold)),
+        const Text(
+          'Text Watermark',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 8),
         TextField(
           decoration: const InputDecoration(labelText: 'Text'),
@@ -202,7 +266,15 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget _slider(String label, double value, double min, double max, ValueChanged<double> onChanged, {String Function(double)? formatter, String suffix = ''}) {
+  Widget _slider(
+    String label,
+    double value,
+    double min,
+    double max,
+    ValueChanged<double> onChanged, {
+    String Function(double)? formatter,
+    String suffix = '',
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -210,7 +282,11 @@ class _MyAppState extends State<MyApp> {
           children: [
             Text(label),
             const SizedBox(width: 8),
-            Text(formatter != null ? formatter(value) : '${value.toStringAsFixed(1)}$suffix'),
+            Text(
+              formatter != null
+                  ? formatter(value)
+                  : '${value.toStringAsFixed(1)}$suffix',
+            ),
           ],
         ),
         Slider(value: value, min: min, max: max, onChanged: onChanged),
@@ -228,7 +304,10 @@ class _MyAppState extends State<MyApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Result', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text(
+                  'Result',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 if (_resultImage != null)
                   ElevatedButton.icon(
                     onPressed: _saveResultToGallery,
@@ -242,7 +321,9 @@ class _MyAppState extends State<MyApp> {
               aspectRatio: 3 / 2,
               child: Container(
                 color: Colors.grey.shade100,
-                child: _resultImage == null ? const Center(child: Text('No result')) : Image.memory(_resultImage!, fit: BoxFit.contain),
+                child: _resultImage == null
+                    ? const Center(child: Text('No result'))
+                    : Image.memory(_resultImage!, fit: BoxFit.contain),
               ),
             ),
           ],
@@ -386,14 +467,20 @@ class _MyAppState extends State<MyApp> {
 
   Future<Uint8List> _generateSampleBasePng(int width, int height) async {
     final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()));
+    final canvas = Canvas(
+      recorder,
+      Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()),
+    );
     final paint = Paint()
       ..shader = ui.Gradient.linear(
         const Offset(0, 0),
         Offset(width.toDouble(), height.toDouble()),
         [const Color(0xFF3A7BD5), const Color(0xFF00D2FF)],
       );
-    canvas.drawRect(Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()), paint);
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()),
+      paint,
+    );
     final tp = _textPainter('Watermark Kit', 36);
     tp.layout();
     tp.paint(canvas, const Offset(24, 24));
@@ -405,7 +492,10 @@ class _MyAppState extends State<MyApp> {
 
   Future<Uint8List> _generateSampleWatermarkPng(int width, int height) async {
     final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder, Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()));
+    final canvas = Canvas(
+      recorder,
+      Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()),
+    );
     canvas.drawColor(const Color(0x00000000), BlendMode.src); // transparent bg
     final r = Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble());
     final paint = Paint()..color = const Color(0xFFFFFFFF).withOpacity(0.95);
@@ -415,17 +505,31 @@ class _MyAppState extends State<MyApp> {
     canvas.drawPath(path, paint);
     final tp = _textPainter('WM', 64, color: const Color(0xFF000000));
     tp.layout();
-    tp.paint(canvas, Offset(width / 2 - tp.width / 2, height / 2 - tp.height / 2));
+    tp.paint(
+      canvas,
+      Offset(width / 2 - tp.width / 2, height / 2 - tp.height / 2),
+    );
     final picture = recorder.endRecording();
     final img = await picture.toImage(width, height);
     final data = await img.toByteData(format: ui.ImageByteFormat.png);
     return data!.buffer.asUint8List();
   }
 
-  TextPainter _textPainter(String text, double size, {Color color = const Color(0xFFFFFFFF)}) {
+  TextPainter _textPainter(
+    String text,
+    double size, {
+    Color color = const Color(0xFFFFFFFF),
+  }) {
     final tp = TextPainter(
-      text: TextSpan(text: text, style: TextStyle(fontSize: size, color: color, fontWeight: FontWeight.w700)),
       textDirection: TextDirection.ltr,
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          fontSize: size,
+          color: color,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
     return tp;
   }
@@ -456,7 +560,9 @@ class _MyAppState extends State<MyApp> {
 
       final dir = await getTemporaryDirectory();
       final ext = _format == 'png' ? 'png' : 'jpg';
-      final tempFile = File('${dir.path}/watermarked_${DateTime.now().millisecondsSinceEpoch}.$ext');
+      final tempFile = File(
+        '${dir.path}/watermarked_${DateTime.now().millisecondsSinceEpoch}.$ext',
+      );
       await tempFile.writeAsBytes(_resultImage!);
 
       await Gal.putImage(tempFile.path);
@@ -493,7 +599,10 @@ class _ImageTabState extends State<_ImageTab> {
             parent._controls(),
             const SizedBox(height: 12),
             ElevatedButton.icon(
-              onPressed: (parent._baseImage != null && parent._watermarkImage != null && !parent._isComposing)
+              onPressed:
+                  (parent._baseImage != null &&
+                      parent._watermarkImage != null &&
+                      !parent._isComposing)
                   ? parent._compose
                   : null,
               icon: const Icon(Icons.play_arrow),
@@ -507,7 +616,9 @@ class _ImageTabState extends State<_ImageTab> {
                   ? parent._composeText
                   : null,
               icon: const Icon(Icons.text_fields),
-              label: Text(parent._isComposing ? 'Composing...' : 'Compose Text'),
+              label: Text(
+                parent._isComposing ? 'Composing...' : 'Compose Text',
+              ),
             ),
             const SizedBox(height: 12),
             parent._previewResult(),
@@ -578,27 +689,41 @@ class _VideoTabState extends State<_VideoTab> {
           children: [
             const Text('Video'),
             const SizedBox(height: 8),
-            Row(children: [
-              ElevatedButton(onPressed: _pickVideo, child: const Text('Pick Video')),
-              const SizedBox(width: 8),
-              if (_videoPath != null) Expanded(child: Text(_videoPath!, maxLines: 1, overflow: TextOverflow.ellipsis)),
-            ]),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: _pickVideo,
+                  child: const Text('Pick Video'),
+                ),
+                const SizedBox(width: 8),
+                if (_videoPath != null)
+                  Expanded(
+                    child: Text(
+                      _videoPath!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+              ],
+            ),
             const SizedBox(height: 12),
-            Row(children: [
-              const Text('Watermark:'),
-              const SizedBox(width: 8),
-              ChoiceChip(
-                label: const Text('Text'),
-                selected: !_useImageWatermark,
-                onSelected: (v) => setState(() => _useImageWatermark = !v),
-              ),
-              const SizedBox(width: 8),
-              ChoiceChip(
-                label: const Text('Image'),
-                selected: _useImageWatermark,
-                onSelected: (v) => setState(() => _useImageWatermark = v),
-              ),
-            ]),
+            Row(
+              children: [
+                const Text('Watermark:'),
+                const SizedBox(width: 8),
+                ChoiceChip(
+                  label: const Text('Text'),
+                  selected: !_useImageWatermark,
+                  onSelected: (v) => setState(() => _useImageWatermark = !v),
+                ),
+                const SizedBox(width: 8),
+                ChoiceChip(
+                  label: const Text('Image'),
+                  selected: _useImageWatermark,
+                  onSelected: (v) => setState(() => _useImageWatermark = v),
+                ),
+              ],
+            ),
             const SizedBox(height: 8),
             if (!_useImageWatermark)
               TextField(
@@ -622,7 +747,11 @@ class _VideoTabState extends State<_VideoTab> {
                     label: const Text('Load Sample GIF'),
                   ),
                   if (_wmImage != null)
-                    SizedBox(width: 64, height: 64, child: Image.memory(_wmImage!, fit: BoxFit.contain)),
+                    SizedBox(
+                      width: 64,
+                      height: 64,
+                      child: Image.memory(_wmImage!, fit: BoxFit.contain),
+                    ),
                 ],
               ),
             const SizedBox(height: 12),
@@ -634,36 +763,89 @@ class _VideoTabState extends State<_VideoTab> {
                   value: _anchor,
                   items: const [
                     DropdownMenuItem(value: 'topLeft', child: Text('topLeft')),
-                    DropdownMenuItem(value: 'topRight', child: Text('topRight')),
-                    DropdownMenuItem(value: 'bottomLeft', child: Text('bottomLeft')),
-                    DropdownMenuItem(value: 'bottomRight', child: Text('bottomRight')),
+                    DropdownMenuItem(
+                      value: 'topRight',
+                      child: Text('topRight'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'bottomLeft',
+                      child: Text('bottomLeft'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'bottomRight',
+                      child: Text('bottomRight'),
+                    ),
                     DropdownMenuItem(value: 'center', child: Text('center')),
                   ],
                   onChanged: (v) => setState(() => _anchor = v ?? _anchor),
                 ),
               ],
             ),
-            _slider('Margin', _margin, 0, 64, (v) => setState(() => _margin = v), suffix: 'px'),
-            _slider('Width % of base', _widthPercent, 0.05, 0.8, (v) => setState(() => _widthPercent = v), formatter: (v) => '${(v * 100).toStringAsFixed(0)}%'),
-            _slider('Opacity', _opacity, 0.0, 1.0, (v) => setState(() => _opacity = v), formatter: (v) => v.toStringAsFixed(2)),
-            _slider('Offset X', _offsetX, -200, 200, (v) => setState(() => _offsetX = v), formatter: (v) => v.toStringAsFixed(0), suffix: 'px'),
-            _slider('Offset Y', _offsetY, -200, 200, (v) => setState(() => _offsetY = v), formatter: (v) => v.toStringAsFixed(0), suffix: 'px'),
+            _slider(
+              'Margin',
+              _margin,
+              0,
+              64,
+              (v) => setState(() => _margin = v),
+              suffix: 'px',
+            ),
+            _slider(
+              'Width % of base',
+              _widthPercent,
+              0.05,
+              0.8,
+              (v) => setState(() => _widthPercent = v),
+              formatter: (v) => '${(v * 100).toStringAsFixed(0)}%',
+            ),
+            _slider(
+              'Opacity',
+              _opacity,
+              0.0,
+              1.0,
+              (v) => setState(() => _opacity = v),
+              formatter: (v) => v.toStringAsFixed(2),
+            ),
+            _slider(
+              'Offset X',
+              _offsetX,
+              -200,
+              200,
+              (v) => setState(() => _offsetX = v),
+              formatter: (v) => v.toStringAsFixed(0),
+              suffix: 'px',
+            ),
+            _slider(
+              'Offset Y',
+              _offsetY,
+              -200,
+              200,
+              (v) => setState(() => _offsetY = v),
+              formatter: (v) => v.toStringAsFixed(0),
+              suffix: 'px',
+            ),
             const SizedBox(height: 8),
-            Row(children: [
-              ElevatedButton.icon(
-                onPressed: (_videoPath != null && _task == null && (_useImageWatermark ? _wmImage != null : _wmText.trim().isNotEmpty))
-                    ? _startCompose
-                    : null,
-                icon: const Icon(Icons.play_arrow),
-                label: Text(_task == null ? 'Compose Video' : 'Composing...'),
-              ),
-              const SizedBox(width: 8),
-              ElevatedButton.icon(
-                onPressed: (_task != null) ? _cancel : null,
-                icon: const Icon(Icons.stop),
-                label: const Text('Cancel'),
-              ),
-            ]),
+            Row(
+              children: [
+                ElevatedButton.icon(
+                  onPressed:
+                      (_videoPath != null &&
+                          _task == null &&
+                          (_useImageWatermark
+                              ? _wmImage != null
+                              : _wmText.trim().isNotEmpty))
+                      ? _startCompose
+                      : null,
+                  icon: const Icon(Icons.play_arrow),
+                  label: Text(_task == null ? 'Compose Video' : 'Composing...'),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton.icon(
+                  onPressed: (_task != null) ? _cancel : null,
+                  icon: const Icon(Icons.stop),
+                  label: const Text('Cancel'),
+                ),
+              ],
+            ),
             const SizedBox(height: 8),
             LinearProgressIndicator(value: (_task != null) ? _progress : null),
             const SizedBox(height: 12),
@@ -678,31 +860,56 @@ class _VideoTabState extends State<_VideoTab> {
     // Controller is initialized before setting state.
     return AspectRatio(
       aspectRatio: c.value.aspectRatio == 0 ? 16 / 9 : c.value.aspectRatio,
-      child: Stack(children: [
-        VideoPlayer(c),
-        Positioned(
-          bottom: 8,
-          right: 8,
-          child: Row(children: [
-            IconButton(
-              icon: Icon(c.value.isPlaying ? Icons.pause : Icons.play_arrow, color: Colors.white),
-              onPressed: () {
-                setState(() {
-                  c.value.isPlaying ? c.pause() : c.play();
-                });
-              },
-            )
-          ]),
-        )
-      ]),
+      child: Stack(
+        children: [
+          VideoPlayer(c),
+          Positioned(
+            bottom: 8,
+            right: 8,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    c.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      c.value.isPlaying ? c.pause() : c.play();
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _slider(String label, double value, double min, double max, ValueChanged<double> onChanged, {String Function(double)? formatter, String suffix = ''}) {
+  Widget _slider(
+    String label,
+    double value,
+    double min,
+    double max,
+    ValueChanged<double> onChanged, {
+    String Function(double)? formatter,
+    String suffix = '',
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(children: [Text(label), const SizedBox(width: 8), Text(formatter != null ? formatter(value) : '${value.toStringAsFixed(1)}$suffix')]),
+        Row(
+          children: [
+            Text(label),
+            const SizedBox(width: 8),
+            Text(
+              formatter != null
+                  ? formatter(value)
+                  : '${value.toStringAsFixed(1)}$suffix',
+            ),
+          ],
+        ),
         Slider(value: value, min: min, max: max, onChanged: onChanged),
       ],
     );

@@ -7,11 +7,12 @@ issue_tracker: https://github.com/alaaissaali/flutter_watermark_kit/issues
 
 environment:
   sdk: ^3.8.0
-  flutter: '>=3.3.0'
+  flutter: '>=3.41.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  meta: ^1.16.0
   plugin_platform_interface: ^2.0.2
 
 dev_dependencies:
