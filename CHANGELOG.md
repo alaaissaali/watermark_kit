@@ -2,6 +2,9 @@
 
 Published as `flutter_watermark_kit` on pub.dev (fork of upstream `watermark_kit`).
 
+Added
+- **iOS**: Swift Package Manager support (dual SPM + CocoaPods); Flutter 3.41+ for the SPM integration path.
+
 Fixed
 - **iOS**: Deliver video progress/completion/error Pigeon callbacks on the main queue (required for Flutter platform channels).
 - **iOS**: End video processing when `copyNextSampleBuffer()` returns nil for video/audio tracks instead of spinning while `reader.status` stays `.reading` (fixes hangs near end of export, especially with audio passthrough).
