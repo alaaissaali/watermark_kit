@@ -1,4 +1,6 @@
-## 2.2.1
+## 2.2.1 (`flutter_watermark_kit`)
+
+Published as `flutter_watermark_kit` on pub.dev (fork of upstream `watermark_kit`).
 
 Fixed
 - **iOS**: Deliver video progress/completion/error Pigeon callbacks on the main queue (required for Flutter platform channels).

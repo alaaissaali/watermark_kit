@@ -1,9 +1,9 @@
-name: watermark_kit
-description: "Fast watermarking for Flutter (iOS + Android). Image/text overlays for images and videos without FFmpeg (Core Image/AVFoundation on iOS; MediaCodec + GLES on Android)."
+name: flutter_watermark_kit
+description: "Fast watermarking for Flutter (iOS + Android). Fork of watermark_kit with iOS video compose fixes (main-thread callbacks, end-of-stream)."
 version: 2.2.1
-homepage: https://github.com/tttocklll/watermark_kit
-repository: https://github.com/tttocklll/watermark_kit
-issue_tracker: https://github.com/tttocklll/watermark_kit/issues
+homepage: https://github.com/alaaissaali/flutter_watermark_kit
+repository: https://github.com/alaaissaali/flutter_watermark_kit
+issue_tracker: https://github.com/alaaissaali/flutter_watermark_kit/issues
 
 environment:
   sdk: ^3.8.0

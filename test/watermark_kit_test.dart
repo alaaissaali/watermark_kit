@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:typed_data';
-import 'package:watermark_kit/watermark_kit.dart';
-import 'package:watermark_kit/watermark_kit_platform_interface.dart';
-import 'package:watermark_kit/watermark_kit_method_channel.dart';
+import 'package:flutter_watermark_kit/watermark_kit.dart';
+import 'package:flutter_watermark_kit/watermark_kit_platform_interface.dart';
+import 'package:flutter_watermark_kit/watermark_kit_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockWatermarkKitPlatform

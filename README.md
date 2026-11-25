@@ -1,4 +1,6 @@
-# watermark_kit
+# flutter_watermark_kit
+
+Maintained fork of [watermark_kit](https://github.com/tttocklll/watermark_kit) (upstream 2.2.0+) with **iOS video compose fixes** in 2.2.1: Pigeon callbacks on the main queue and correct end-of-stream when `copyNextSampleBuffer()` returns nil.
 
 Lightweight, fast watermarking plugin for Flutter (iOS + Android). Compose image or text watermarks over images and videos, with a simple cross‑platform API and no FFmpeg dependency. Under the hood: iOS uses Core Image + AVFoundation; Android uses MediaCodec + OpenGL ES.
 
@@ -13,13 +15,13 @@ In your app's `pubspec.yaml`:
 
 ```
 dependencies:
-  watermark_kit: ^2.0.0
+  flutter_watermark_kit: ^2.2.1
 ```
 
 Import and create the API:
 
 ```
-import 'package:watermark_kit/watermark_kit.dart';
+import 'package:flutter_watermark_kit/watermark_kit.dart';
 
 final wm = WatermarkKit();
 ```

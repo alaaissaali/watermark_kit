@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:watermark_kit/gen/messages.g.dart' as pigeon;
-import 'package:watermark_kit/watermark_kit.dart';
+import 'package:flutter_watermark_kit/gen/messages.g.dart' as pigeon;
+import 'package:flutter_watermark_kit/watermark_kit.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

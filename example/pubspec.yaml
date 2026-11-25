@@ -21,12 +21,7 @@ dependencies:
   video_player: ^2.9.1
   gal: ^2.3.0
 
-  watermark_kit:
-    # When depending on this package from a real application you should use:
-    #   watermark_kit: ^x.y.z
-    # See https://dart.dev/tools/pub/dependencies#version-constraints
-    # The example app is bundled with the plugin so we use a path dependency on
-    # the parent directory to use the current plugin's version.
+  flutter_watermark_kit:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

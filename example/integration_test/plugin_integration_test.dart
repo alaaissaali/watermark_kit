@@ -10,7 +10,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:watermark_kit/watermark_kit.dart';
+import 'package:flutter_watermark_kit/watermark_kit.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:video_player/video_player.dart';
-import 'package:watermark_kit/watermark_kit.dart';
+import 'package:flutter_watermark_kit/watermark_kit.dart';
 import 'package:gal/gal.dart';
 
 void main() {
