@@ -1,6 +1,7 @@
 name: flutter_watermark_kit
 description: "Fast watermarking for Flutter (iOS + Android). Fork of watermark_kit with iOS video compose fixes (main-thread callbacks, end-of-stream)."
 version: 2.2.1
+license: BSD-3-Clause
 homepage: https://github.com/alaaissaali/flutter_watermark_kit
 repository: https://github.com/alaaissaali/flutter_watermark_kit
 issue_tracker: https://github.com/alaaissaali/flutter_watermark_kit/issues
